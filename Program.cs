@@ -12,7 +12,17 @@ namespace autoCorrect
         static void Main(string[] args)
         {
             //declaring the path to the file
-            string path = "thisStory.txt";
+            string path =File.ReadAllText("thisStory.txt");
+
+
+
+            //Writing to the file
+            using (StreamWriter sw = new StreamWriter (path, true))
+            {
+                Console.WriteLine(path.Replace("and", "And"));
+                //sw.WriteLine("DEF");
+                sw.Close();
+            }
 
             //reading from the file
             if (File.Exists(path))
@@ -26,12 +36,12 @@ namespace autoCorrect
                     sr.Close();
                 }
                 Console.WriteLine("its open!");
-                Console.Read();
             }
             else
             {
                 Console.WriteLine("nope! try again...");
             }
+            Console.Read();
         }
     }
 }
